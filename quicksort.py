@@ -8,16 +8,18 @@ def partition(lst, low, high):
     return pivot
 
 
-def quicksort(lst, low=0, high=None):
+ddef quicksort(lst, low=0, high=None):
     if high is None:
         high = len(lst) - 1
-    def _quicksort(lst, low, high):
-        if low >= high:
-            return
-        pivot = partition(lst, low, high)
-        _quicksort(lst, low, pivot-1)
-        _quicksort(lst, pivot+1, high)
-    return _quicksort(lst, low, high)
+    #base case
+    if low >= high:
+        return
+    
+    pivot = partition(lst,low, high)  #partitioning index, lst[pivot] is at right place
+    # Sort elements before partition
+    quicksort(lst,low, pivot - 1)
+    #sort elements after partition
+    quicksort(lst,pivot + 1, high)
 
 lst = [7, 1, 3, 15, 11, 10, 2, 21]
 print(lst)
