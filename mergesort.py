@@ -1,16 +1,17 @@
 # TODO implement mergesort
 
 
-def mergesort(list: list, left=1, right=-1) -> list:
+def mergesort(list: list, left=0, right=-1) -> list:
     if right == -1:
-        right = len(list)
+        right = len(list) - 1
     if right > left:
         middle = int(left + (right - left) / 2)
+        print(list, left, middle, right)
         # mergesort both halves
         list = mergesort(list, left, middle)
         list = mergesort(list, middle+1, right)
         # merge the halves
-        list = merge(list, left-1, middle-1, right-1)
+        list = merge(list, left, middle, right)
     return list
 
 
@@ -25,6 +26,7 @@ def merge(list, left, middle, right) -> list:
         left_list.append(list[left + i])
     for i in range(n2):
         right_list.append(list[middle + 1 + i])
+    print("Calling merge:", left_list, right_list, list)
     # Merge the temp lists back
     # Initial index of first sublist
     i = 0
@@ -51,3 +53,6 @@ def merge(list, left, middle, right) -> list:
         j += 1
         k += 1
     return list
+
+
+print(mergesort([3, 6, 7, 1, 2, 8, 5, 4]))
